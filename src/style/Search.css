@@ -4,3 +4,37 @@
     justify-content:flex-start;
    
 }
+.backg {
+    background-color: brown;
+}
+
+.search {
+    border: 1px solid rgb(124, 60, 60);
+    display: flex;
+    justify-content: flex-start;
+    padding: 5px 10px;
+    font-size: 18px;
+    border-radius: 5px;
+    width:400px;
+    color: blueviolet;
+    background-color: rgb(255, 255, 255);
+    padding-left: 20px;
+}
+
+.search input {
+  
+    font-weight: bold;
+    border: none;
+    outline: none;
+    width: 320px;
+}
+.search i {
+    color: blueviolet;
+    justify-content:flex-end ;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+.search .button {
+    border: none;
+    
+}

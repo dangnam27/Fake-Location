@@ -11,24 +11,22 @@ function handlePost (){
 }
 handlePost ()
 
-function postData(data, callback) {
-    var options = {
-        method : 'POST',
-        headers: {
-            "Content-Type": "application/json",
+// function postData(data, callback) {
+//     var options = {
+//         method : 'POST',
+//         headers: {
+//             "Content-Type": "application/json",
          
-          },
-        body : JSON.stringify(data)
-    };
+//           },
+//         body : JSON.stringify(data)
+//     };
 
-    fetch(dataAPI, options)
-    .then(function (response) {
-        response.json(options);
-    })
-    .then(callback);
-}
-
-
+//     fetch(dataAPI, options)
+//     .then(function (response) {
+//         response.json(options);
+//     })
+//     .then(callback);
+// }
  function Post() {
   return (
     <div>
@@ -42,24 +40,41 @@ function postData(data, callback) {
     </div>
   )
 }
+function inputInfor(){
+    var searchInput = document.querySelector('.search input')
+        searchInput.addEventListener('input', function(e) {
+    let txtSearch = e.target.value.trim().toLowerCase();
+    let listProductDOM = document.querySelectAll('.product');
+    listProductDOM.forEach(item =>{
+        if(item.innerText.toLowerCase().includes(txtSearch)){
+            item.classList.remove('hidde');
+        }else{
+            item.classList.add('hidd')
+        }
+    })
+})
+};
+// inputInfor();
 
+
+ 
 function Search(props) {
     return (
-    <div>
-        <nav class="navbar bg-body-tertiary ">
-            <div class="container-fluid search1">
+    <div className='backg'>
+        <nav class=" container navbar d-flex ">
+            <div class="search">
                 <form className="d-flex">
-                    <input className="form-control ms-5 me-2" type="search" placeholder="Tìm kiếm thứ bạn thích" aria-label="Search"/>
-                    <button className="btn btn-outline-dark" type="submit">Tìm</button>
+                    <button className='button'> <i class="fa-solid fa-magnifying-glass"></i></button>
+                    
+                    <input className="form-control" id='Search' type="search" placeholder="Tìm kiếm thứ bạn thích" aria-label="Search"/>
                 </form>
-                <Post/>
             </div>
-            
+            <Post/>
         </nav>
     </div>
   )
 }
 
-export default Search
+export default Search;
 
 
