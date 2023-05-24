@@ -36,7 +36,7 @@ function Products() {
         <div className="  mb-3 pt-1 ">
                                 
                                 <button 
-                                    className="btn btn-outline-danger m-1 fs-4 lead fw-bold col-md-2 col-xs-4"
+                                    className=" fs-4 fw-bold col-md-2 col-xs-4"
                                     onClick={() => filter.Product('Landscape')}
                                 >
                                     Landscape
