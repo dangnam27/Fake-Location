@@ -1,0 +1,16 @@
+* {
+    margin: 0%;
+    
+}
+.row .card {
+    
+    width: 150px;
+ 
+}
+.row .image {
+    justify-content: center;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    
+}
