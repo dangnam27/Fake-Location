@@ -32,7 +32,7 @@ function Post() {
   return (
     <div>
       <div>
-        <input type="file" name="name" />
+        <input type="file" name="name" accept=".jpg, .png" />
         <button onclick="handlePost ()" id="post">
           Post
         </button>
