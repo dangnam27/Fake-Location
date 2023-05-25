@@ -5,6 +5,7 @@ import Navbar from "./component/Navbar";
 import Products from "./component/Products";
 import { Route, Routes } from "react-router-dom";
 import LandScape from "./component/LandScape";
+import SearchImage from "./component/SearchImage";
 function App() {
   return (
     <>
@@ -16,6 +17,7 @@ function App() {
           {/* <Route path="/Navbar" element={ <Navbar/>}></Route> */}
           <Route path="/LandScape" element={ <LandScape/>}/>
       </Routes>
+      <SearchImage/>
     </>
    
   );

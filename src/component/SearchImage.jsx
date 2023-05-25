@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import LandScape from "./LandScape";
+import '../style/SearchImage.css';
 
-function Filter() {
-  const [data, setData] = useState([]);
+function SearchImage() {
+
+    const [data, setData] = useState([]);
   const [filter, setFilter] = useState(data);
   let [loading, setloading] = useState(false);
   var productsAPI =
@@ -27,26 +28,16 @@ function Filter() {
     };
     getFilter();
   }, []);
-  console.log(data);
-  const ShowProducts = () => {
+  console.log(data)
+
+  const ShowSearch = () => {
+
     return (
-      <>
-        <div className="  mb-3 pt-1 ">
-            <a href="./LandScape">
-            <button
-            className=" fs-4 fw-bold col-md-2 col-xs-4"
-          >
-            Landscape
-          </button>
-            </a>
-          
-        </div>
-        {filter &&
+    <>
+             {filter &&
           filter.map((product) => {
             return (
               <>
-              
-                <div className=" col-md-2 mb-4 col-sm-6  ">
                 <a href="/LandScape" className="nav-link">
                   <div className="card h-100 text-center " key={product.id}>
                     <img
@@ -62,15 +53,33 @@ function Filter() {
                     </div>
                   </div>
                   </a>
-                </div>
-               
               </>
             );
           })}
-      </>
-    );
-  };
+    </>)}
 
-  return <>{loading ? <setInterval /> : <ShowProducts />}</>;
+  return (
+    <>
+    <div className="container contai ">
+    <div className="searchh">
+    <form className="d-flex form">
+            <i class="fa-solid fa-magnifying-glass p-1"></i>
+            <input
+              className="form-control"
+              id="Search"
+              type="search"
+              placeholder="Tìm kiếm thứ bạn thích"
+              aria-label="Search"
+            />
+            </form>  
+            </div> 
+            <div className="Image">
+            <ShowSearch/>   
+            </div>
+            </div>
+    </>
+   
+  )
 }
-export default Filter;
+
+export default SearchImage ;

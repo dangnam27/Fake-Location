@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../style/Search.css";
 import FileUploadPage from "./PostFile";
+import axios from "axios";
 
 
 
@@ -8,32 +9,8 @@ import FileUploadPage from "./PostFile";
     let value = e.target.value.trim().toLowerCase()
     console.log(value)
   }
+ 
 function Search() {
-  const [data, setData] = useState([]);
-  const [filter, setFilter] = useState(data);
-  let [loading, setloading] = useState(false);
-  var productsAPI =
-    "https://raw.githubusercontent.com/dangnam27/Fake-Location/master/db.json";
-  let componentMount = true;
-
-  useEffect(() => {
-    const getFilter = async () => {
-      setloading(true);
-      fetch(productsAPI)
-        .then((res) => res.json())
-        .then((res) => {
-          if (componentMount) {
-            setData(res);
-            setFilter(res);
-            setloading(false);
-          }
-        });
-      return () => {
-        componentMount = false;
-      };
-    };
-    getFilter();
-  }, []);
   
   
   // var searchInput =document.querySelector('.search input')

@@ -1,66 +1,71 @@
-import React, { useEffect, useState } from 'react'
-import Products from "./Products";
 
+import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 
 
 function LandScape() {
+    const { id } = useParams()
 
-    const [data, setData] = useState([])
-    const [filter, setFilter] = useState(data)
+    const [product, setProduct] = useState()
+    const [loading, setLoading] = useState(false)
 
-    let componentMount =true;
 
     useEffect(() => {
-        const getFilter = async () => {
-           
-            fetch('https://raw.githubusercontent.com/dangnam27/Fake-Location/master/db.json')
-            .then((res) => res.json())
-            .then((res) => {
-          if (componentMount) {
-            setData(res);
-            setFilter(res);
-          }
-        });
-      return () => {
-        componentMount = false;
-      };
-    };
-    getFilter();
-      }, [])
-      const ShowProducts = () => {
-        return (
-          <>
-            {
-              filter.map((product) => {
-                return (
-                  <>
-                    <div className=" col-md-2 mb-4 col-sm-6  ">
-                      <div className="card h-100 text-center " key={product.id}>
+        const getLandScape = async () => {
+            setLoading(true)
+            fetch(
+                `https://raw.githubusercontent.com/dangnam27/Fake-Location/master/db.json`
+            )
+                .then((res) => res.json())
+                .then((res) => {
+                    setProduct(res)
+                    setLoading(false)
+                })
+        }
+        getLandScape()
+    }, [])
+    console.log(product)
+    const Loading = () => {
+        return <>Loading...</>
+    }
+    const ShowProduct = () => {
+        if (product)
+            return (
+                <>
+                    <div className="col-md-6">
                         <img
-                          src={product.link_img}
-                          className="card-img-top"
-                          alt="Loading..."
-                          height="150px"
-                        />
-                        <div className=" card-body">
-                          <p className="card-text lead fw-bold">
-                            {product.location}
-                          </p>
-                        </div>
-                      </div>
+                            src={product.link_img}
+                            alt=""
+                            height="400px"
+                            width="400px"
+                        ></img>
                     </div>
-                  </>
-                );
-              })}
-          </>
-        )};
-  return (
-    
-    <div className="row justify-content-center p-5">
-        <ShowProducts/>
-      </div>
-    
-  )
+                    <div className="col-md-6">
+                        <h4 className="text-uppercase text-back-50">
+                            {product.location}
+                        </h4>
+                        <h2 className="display-5"> {product.categories}</h2>
+
+                        <h3 className="display-6 fw-bold my-4">
+                            {' '}
+                            {product.giá}
+                        </h3>
+                        <div className="float-none">      
+                        </div>
+                    </div>
+                </>
+            )
+    }
+
+    return (
+        <div>
+            <div className="container py-5">
+                <div className="row py-4">
+                    {loading ? <Loading /> : <ShowProduct />}
+                </div>
+            </div>
+        </div>
+    )
 }
 
 export default LandScape;
