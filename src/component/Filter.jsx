@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
             let [loading, setloading] = useState(false)
  
   var productsAPI =
-    "https://raw.githubusercontent.com/sonnh7289/python3-download/main/location-data2.json?fbclid=IwAR1paTA_ucuBDjTSeiBK5wQM7tqmu9Ih6U-pxvb_t97Cp-QVPwAlDflEkNw";
+    "https://raw.githubusercontent.com/dangnam27/Fake-Location/master/data.json";
   let componentMount = true;
 
   useEffect(() => {

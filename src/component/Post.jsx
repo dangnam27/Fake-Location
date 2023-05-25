@@ -1,6 +1,6 @@
 import React from 'react'
 
-const dataAPI = "https://raw.githubusercontent.com/sonnh7289/python3-download/main/location-data2.json?fbclid=IwAR1paTA_ucuBDjTSeiBK5wQM7tqmu9Ih6U-pxvb_t97Cp-QVPwAlDflEkNw"
+const dataAPI = "https://raw.githubusercontent.com/dangnam27/Fake-Location/master/data.json"
  
 function handlePost (){  
    onclick = function(){

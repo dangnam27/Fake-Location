@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../style/Search.css";
-import Filter from "./Filter";
+
 
 
 
