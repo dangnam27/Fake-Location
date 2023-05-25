@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "../style/Search.css";
+import Filter from "./Filter";
 
-const dataAPI =
-  "https://raw.githubusercontent.com/sonnh7289/python3-download/main/location-data2.json?fbclid=IwAR1paTA_ucuBDjTSeiBK5wQM7tqmu9Ih6U-pxvb_t97Cp-QVPwAlDflEkNw";
+
+
 
 function handlePost() {
   onclick = function () {
@@ -49,7 +50,7 @@ function inputInfor() {
       if (item.innerText.toLowerCase().includes(txtSearch)) {
         item.classList.remove("hidde");
       } else {
-        item.classList.add("hidd");
+        item.classList.add("hidde");
       }
     });
   });
@@ -63,10 +64,9 @@ function Search(props) {
         <div class="search">
           <form className="d-flex">
             <button className="button">
-              {" "}
+              
               <i class="fa-solid fa-magnifying-glass p-1"></i>
             </button>
-
             <input
               className="form-control"
               id="Search"
@@ -78,6 +78,7 @@ function Search(props) {
         </div>
         <Post />
       </nav>
+     
     </div>
   );
 }
