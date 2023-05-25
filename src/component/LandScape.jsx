@@ -13,7 +13,7 @@ function LandScape() {
     useEffect(() => {
         const getFilter = async () => {
            
-            fetch('https://raw.githubusercontent.com/dangnam27/Fake-Location/master/data.json')
+            fetch('https://raw.githubusercontent.com/dangnam27/Fake-Location/master/db.json')
             .then((res) => res.json())
             .then((res) => {
           if (componentMount) {
