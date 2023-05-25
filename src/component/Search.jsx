@@ -1,63 +1,56 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../style/Search.css";
+import FileUploadPage from "./PostFile";
 
 
 
+  const SearchItem = (e) =>{
+    let value = e.target.value
+    console.log(value)
+  }
+function Search() {
+  const [data, setData] = useState([]);
+  const [filter, setFilter] = useState(data);
+  let [loading, setloading] = useState(false);
+  var productsAPI =
+    "https://raw.githubusercontent.com/dangnam27/Fake-Location/master/data.json";
+  let componentMount = true;
+
+  useEffect(() => {
+    const getFilter = async () => {
+      setloading(true);
+      fetch(productsAPI)
+        .then((res) => res.json())
+        .then((res) => {
+          if (componentMount) {
+            setData(res);
+            setFilter(res);
+            setloading(false);
+          }
+        });
+      return () => {
+        componentMount = false;
+      };
+    };
+    getFilter();
+  }, []);
+  
+  
+  // var searchInput =document.querySelector('.search input')
+  //  searchInput.addEventListener('input', function(e) {
+  //   let txtSearch = e.target.value.trim().toLowerCase();
+  //   let data = document.querySelectorAll('.product')
+  //   data.forEach(item => {
+  //     if (item.innertext.toLowerCase().includes(txtSearch)){
+  //       item.classList.remove('hide')
+  //     } else {
+  //       item.classList.add('hide')
+  //     }
+  //   })
+  //  })
 
 
-function handlePost() {
-  onclick = function () {
-    var name = document.querySelector('input[name="name"]').value;
-    console.log(name);
-  };
-}
-handlePost();
 
-// function postData(data, callback) {
-//     var options = {
-//         method : 'POST',
-//         headers: {
-//             "Content-Type": "application/json",
-
-//           },
-//         body : JSON.stringify(data)
-//     };
-
-//     fetch(dataAPI, options)
-//     .then(function (response) {
-//         response.json(options);
-//     })
-//     .then(callback);
-// }
-function Post() {
-  return (
-    <div>
-      <div>
-        <input type="file" name="name" accept=".jpg, .png" />
-        <button onclick="handlePost ()" id="post">
-          Post
-        </button>
-      </div>
-    </div>
-  );
-}
-function inputInfor() {
-  var searchInput = document.querySelector(".search input");
-  searchInput.addEventListener("input", function (e) {
-    let txtSearch = e.target.value.trim().toLowerCase();
-    let listProductDOM = document.querySelectAll(".product");
-    listProductDOM.forEach((item) => {
-      if (item.innerText.toLowerCase().includes(txtSearch)) {
-        item.classList.remove("hidde");
-      } else {
-        item.classList.add("hidde");
-      }
-    });
-  });
-}
-// inputInfor();
-
-function Search(props) {
   return (
     <div className="backg">
       <nav class=" container navbar d-flex ">
@@ -68,6 +61,7 @@ function Search(props) {
               <i class="fa-solid fa-magnifying-glass p-1"></i>
             </button>
             <input
+              onChange={SearchItem}
               className="form-control"
               id="Search"
               type="search"
@@ -76,11 +70,10 @@ function Search(props) {
             />
           </form>
         </div>
-        <Post />
+        <FileUploadPage/>
       </nav>
      
     </div>
   );
 }
-
 export default Search;

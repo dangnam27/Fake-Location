@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
+import LandScape from "./LandScape";
 
- function Filter() {
-            const [data, setData] = useState([]);
-            const [filter, setFilter] = useState(data);
-            let [loading, setloading] = useState(false)
- 
+function Filter() {
+  const [data, setData] = useState([]);
+  const [filter, setFilter] = useState(data);
+  let [loading, setloading] = useState(false);
   var productsAPI =
     "https://raw.githubusercontent.com/dangnam27/Fake-Location/master/data.json";
   let componentMount = true;
 
   useEffect(() => {
     const getFilter = async () => {
-      setloading(true)
+      setloading(true);
       fetch(productsAPI)
         .then((res) => res.json())
         .then((res) => {
@@ -22,25 +22,25 @@ import React, { useEffect, useState } from "react";
           }
         });
       return () => {
-        
         componentMount = false;
       };
     };
     getFilter();
   }, []);
- 
+  console.log(data);
   const ShowProducts = () => {
     return (
       <>
         <div className="  mb-3 pt-1 ">
-                                
-                                <button 
-                                    className=" fs-4 fw-bold col-md-2 col-xs-4"
-                                    onClick={() => filter.product('Landscape')}
-                                >
-                                    Landscape
-                                </button>  
-                            </div>
+            <a href="./LandScape">
+            <button
+            className=" fs-4 fw-bold col-md-2 col-xs-4"
+          >
+            Landscape
+          </button>
+            </a>
+          
+        </div>
         {filter &&
           filter.map((product) => {
             return (
@@ -50,7 +50,7 @@ import React, { useEffect, useState } from "react";
                     <img
                       src={product.link_img}
                       className="card-img-top"
-                      alt="#"
+                      alt="Loading..."
                       height="150px"
                     />
                     <div className=" card-body">
@@ -66,11 +66,7 @@ import React, { useEffect, useState } from "react";
       </>
     );
   };
-  
-console.log(filter);
-  return (
-   <>
-     {loading ? <setInterval /> : <ShowProducts/>}
-   </>
-);}
+
+  return <>{loading ? <setInterval /> : <ShowProducts />}</>;
+}
 export default Filter;
