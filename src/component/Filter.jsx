@@ -6,7 +6,7 @@ function Filter() {
   const [filter, setFilter] = useState(data);
   let [loading, setloading] = useState(false);
   var productsAPI =
-    "https://raw.githubusercontent.com/dangnam27/Fake-Location/master/data.json";
+    "https://raw.githubusercontent.com/dangnam27/Fake-Location/master/db.json";
   let componentMount = true;
 
   useEffect(() => {
