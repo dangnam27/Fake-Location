@@ -382,52 +382,52 @@
     {
 "id": "64",
         "categories": "Landscape",
-        "link-ịmg": "https://github.com/quockhanh09/Fake-Location-image/raw/main/france/228%20Rue%20de%20l'Universit%C3%A9%2C%2075007%20Paris%2C%20France%2C%20Paris.jpg",
+        "link_img": "https://github.com/quockhanh09/Fake-Location-image/raw/main/france/228%20Rue%20de%20l'Universit%C3%A9%2C%2075007%20Paris%2C%20France%2C%20Paris.jpg",
         "location": "228 Rue de l'Université, 75007 Paris, France, Paris, France"
     },
     {
 "id": "65",
         "categories": "Landscape",
-        "link-ịmg": "https://github.com/quockhanh09/Fake-Location-image/raw/main/france/Bazilica%20Sacr%C3%A9-C%C5%93ur%2C%20Paris%2C%20France%20(2).jpg",
+        "link_img": "https://github.com/quockhanh09/Fake-Location-image/raw/main/france/Bazilica%20Sacr%C3%A9-C%C5%93ur%2C%20Paris%2C%20France%20(2).jpg",
         "location": "Bazilica Sacré-Cœur, Paris, France"
     },
     {"id": "66",
         "categories": "Landscape",
-        "link-ịmg": "https://github.com/quockhanh09/Fake-Location-image/raw/main/france/Bazilica%20Sacr%C3%A9-C%C5%93ur%2C%20Paris%2C%20France.jpg",
+        "link_img": "https://github.com/quockhanh09/Fake-Location-image/raw/main/france/Bazilica%20Sacr%C3%A9-C%C5%93ur%2C%20Paris%2C%20France.jpg",
         "location": "Bazilica Sacré-Cœur, Paris, France"
     },
     {
 "id": "67",
         "categories": "Landscape",
-        "link-ịmg": "https://github.com/quockhanh09/Fake-Location-image/raw/main/france/Cath%C3%A9drale%20Sainte%20Croix%20d'Orl%C3%A9ans%2C%20Place%20Sainte%20Croix%2C%20Orl%C3%A9ans%2C%20France.jpg",
+        "link_img": "https://github.com/quockhanh09/Fake-Location-image/raw/main/france/Cath%C3%A9drale%20Sainte%20Croix%20d'Orl%C3%A9ans%2C%20Place%20Sainte%20Croix%2C%20Orl%C3%A9ans%2C%20France.jpg",
         "location": "Cathédrale Sainte Croix d'Orléans, Place Sainte Croix, Orléans, France"
     },
     {
 "id": "68",
         "categories": "Landscape",
-        "link-ịmg": "https://github.com/quockhanh09/Fake-Location-image/raw/main/france/Eiffel%20Tower%2C%20Paris%2C%20France%20(2).jpg",
+        "link_img": "https://github.com/quockhanh09/Fake-Location-image/raw/main/france/Eiffel%20Tower%2C%20Paris%2C%20France%20(2).jpg",
         "location": "Eiffel Tower, Paris, France"
     },
     {
 "id": "69",
         "categories": "Landscape",
-        "link-ịmg": "https://github.com/quockhanh09/Fake-Location-image/raw/main/france/Eiffel%20Tower%2C%20Paris%2C%20France.jpg",
+        "link_img": "https://github.com/quockhanh09/Fake-Location-image/raw/main/france/Eiffel%20Tower%2C%20Paris%2C%20France.jpg",
         "location": "Eiffel Tower, Paris, France"
     },
     {
         "categories": "Landscape",
-        "link-ịmg": "https://github.com/quockhanh09/Fake-Location-image/raw/main/france/Louvre%20Museum%2C%20Rue%20de%20Rivoli%2C%20Paris%2C%20France.jpg",
+        "link_img": "https://github.com/quockhanh09/Fake-Location-image/raw/main/france/Louvre%20Museum%2C%20Rue%20de%20Rivoli%2C%20Paris%2C%20France.jpg",
         "location": "Le Mont-Saint-Michel, Le Mont-Saint-Michel, France"
     },
     {"id": "70",
         "categories": "Landscape",
-        "link-ịmg": "https://github.com/quockhanh09/Fake-Location-image/raw/main/france/Louvre%20Museum%2C%20Rue%20de%20Rivoli%2C%20Paris%2C%20France.jpg",
+        "link_img": "https://github.com/quockhanh09/Fake-Location-image/raw/main/france/Louvre%20Museum%2C%20Rue%20de%20Rivoli%2C%20Paris%2C%20France.jpg",
         "location": "Louvre Museum, Rue de Rivoli, Paris, France"
     },
     {
 "id": "71",
         "categories": "Landscape",
-        "link-ịmg": "https://github.com/quockhanh09/Fake-Location-image/raw/main/france/Paris%2C%20France.jpg",
+        "link_img": "https://github.com/quockhanh09/Fake-Location-image/raw/main/france/Paris%2C%20France.jpg",
         "location": "Paris, France"
     },
     {
