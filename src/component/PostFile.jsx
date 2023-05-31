@@ -29,7 +29,7 @@ function FileUploadPage() {
           }
         );
         console.log(response);
-        setIsFilePicked(false);
+         setIsFilePicked(false)
       } catch (error) {
         console.error("Error:", error);
       }
