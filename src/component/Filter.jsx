@@ -27,43 +27,38 @@ function Filter() {
     };
     getFilter();
   }, []);
-  console.log(data);
+  // console.log(data);
   const ShowProducts = () => {
     return (
       <>
         <div className="  mb-3 pt-1 ">
-            <a href="./LandScape">
-            <button
-            className=" fs-4 fw-bold col-md-2 col-xs-4"
-          >
-            Landscape
-          </button>
-            </a>
-          
+          <a href="./LandScape">
+            <button className=" fs-4 fw-bold col-md-2 col-xs-4">
+              Landscape
+            </button>
+          </a>
         </div>
         {filter &&
           filter.map((product) => {
             return (
               <>
-              
                 <div className=" col-md-2 mb-4 col-sm-6  ">
-                <a href="/LandScape" className="nav-link">
-                  <div className="card h-100 text-center " key={product.id}>
-                    <img
-                      src={product.link_img}
-                      className="card-img-top"
-                      alt="Loading..."
-                      height="150px"
-                    />
-                    <div className=" card-body">
-                      <p className="card-text lead fw-bold">
-                        {product.location}
-                      </p>
+                  <a href="/LandScape" className="nav-link">
+                    <div className="card h-100 text-center " key={product.id}>
+                      <img
+                        src={product.link_img}
+                        className="card-img-top"
+                        alt="Loading..."
+                        height="150px"
+                      />
+                      <div className=" card-body">
+                        <p className="card-text lead fw-bold">
+                          {product.location}
+                        </p>
+                      </div>
                     </div>
-                  </div>
                   </a>
                 </div>
-               
               </>
             );
           })}
@@ -71,6 +66,6 @@ function Filter() {
     );
   };
 
-  return <>{loading ? <setInterval /> : <ShowProducts />}</>;
+  return <>{loading ? loading : <ShowProducts />}</>;
 }
 export default Filter;

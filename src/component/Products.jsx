@@ -6,12 +6,7 @@ import Filter from "./Filter";
 function Products() {
  
     let loading = false;
-  function asyncFunction() {
-    setTimeout(() => {
-      loading = false;
-    }, 3000);
- }
- asyncFunction();
+
   const Loading = () => {
     return <> Loading...</>
   }

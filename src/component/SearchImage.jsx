@@ -1,85 +1,33 @@
 import React, { useEffect, useState } from "react";
-import '../style/SearchImage.css';
+import "../style/SearchImage.css";
+import PostFiltersForm from "./PostFiltersForm";
+import PostList from "./PostList";
+import axios from "axios";
 
 function SearchImage() {
-
-    const [data, setData] = useState([]);
-  const [filter, setFilter] = useState(data);
-  let [loading, setloading] = useState(false);
-  var productsAPI =
-    "https://raw.githubusercontent.com/dangnam27/Fake-Location/master/db.json";
-  let componentMount = true;
+  const [postList, setPostList] = useState([]);
 
   useEffect(() => {
-    const getFilter = async () => {
-      setloading(true);
-      fetch(productsAPI)
-        .then((res) => res.json())
-        .then((res) => {
-          if (componentMount) {
-            setData(res);
-            setFilter(res);
-            setloading(false);
-          }
-        });
-      return () => {
-        componentMount = false;
-      };
-    };
-    getFilter();
+    async function fetchPostList() {
+      const res = await axios.get("http://14.225.7.179:8081/get_img/");
+      setPostList(res.data);
+    }
+    console.log(postList);
+    fetchPostList();
   }, []);
-  console.log(data)
 
-  const ShowSearch = () => {
-
-    return (
-    <>
-             {filter &&
-          filter.map((product) => {
-            return (
-              <>
-                <a href="/LandScape" className="nav-link">
-                  <div className="card h-100 text-center " key={product.id}>
-                    <img
-                      src={product.link_img}
-                      className="card-img-top"
-                      alt="Loading..."
-                      height="150px"
-                    />
-                    <div className=" card-body">
-                      <p className="card-text lead fw-bold">
-                        {product.location}
-                      </p>
-                    </div>
-                  </div>
-                  </a>
-              </>
-            );
-          })}
-    </>)}
+  function handleFiltersChanged(newFilters) {
+    console.log("New filters", newFilters);
+  }
 
   return (
     <>
-    <div className="container contai ">
-    <div className="searchh">
-    <form className="d-flex form">
-            <i class="fa-solid fa-magnifying-glass p-1"></i>
-            <input
-              className="form-control"
-              id="Search"
-              type="search"
-              placeholder="Tìm kiếm thứ bạn thích"
-              aria-label="Search"
-            />
-            </form>  
-            </div> 
-            <div className="Image">
-            <ShowSearch/>   
-            </div>
-            </div>
+      <div className=" contai ">
+        <PostFiltersForm onSubmit={handleFiltersChanged} />
+        <PostList posts={postList} />
+      </div>
     </>
-   
-  )
+  );
 }
 
-export default SearchImage ;
+export default SearchImage;

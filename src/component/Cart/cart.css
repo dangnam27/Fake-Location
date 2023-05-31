@@ -1,0 +1,6 @@
+.image-class {
+    height: 300px;
+    width: 300px;
+    justify-content: center;
+    border: 1px solid #ddd;
+}

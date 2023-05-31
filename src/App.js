@@ -6,6 +6,7 @@ import Products from "./component/Products";
 import { Route, Routes } from "react-router-dom";
 import LandScape from "./component/LandScape";
 import SearchImage from "./component/SearchImage";
+import Cart from "./component/Cart";
 function App() {
   return (
     <>
@@ -14,10 +15,12 @@ function App() {
       <Navbar/>
       <Routes>
           <Route path="/" element={ <Products/>}></Route>
+          {/* <Route path="/Cart" element={ <Cart/> }></Route> */}
           {/* <Route path="/Navbar" element={ <Navbar/>}></Route> */}
           <Route path="/LandScape" element={ <LandScape/>}/>
       </Routes>
-      <SearchImage/>
+      {/* <Cart/>
+      <SearchImage/> */}
     </>
    
   );

@@ -24,7 +24,7 @@ function LandScape() {
         }
         getLandScape()
     }, [])
-    console.log(product)
+    // console.log(product)
     const Loading = () => {
         return <>Loading...</>
     }
@@ -47,7 +47,6 @@ function LandScape() {
                         <h2 className="display-5"> {product.categories}</h2>
 
                         <h3 className="display-6 fw-bold my-4">
-                            {' '}
                             {product.giá}
                         </h3>
                         <div className="float-none">      
