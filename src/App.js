@@ -4,23 +4,23 @@ import Search from "./component/Search";
 import Navbar from "./component/Navbar";
 import Products from "./component/Products";
 import { Route, Routes } from "react-router-dom";
-import LandScape from "./component/LandScape";
 import SearchImage from "./component/SearchImage";
 import Cart from "./component/Cart";
+import ImagePage from "./component/ImagePage";
+import Login from "./component/Login/Login";
+import FileUploadPage from "./component/PostFile";
 function App() {
   return (
     <>
-    
+      {/* <Login/> */}
       <Search/>
       <Navbar/>
       <Routes>
-          <Route path="/" element={ <Products/>}></Route>
-          {/* <Route path="/Cart" element={ <Cart/> }></Route> */}
-          {/* <Route path="/Navbar" element={ <Navbar/>}></Route> */}
-          <Route path="/LandScape" element={ <LandScape/>}/>
+          {/* <Route path="/" element={ <Products/>}></Route> */}
+          <Route path="/Cart/:id" element={ <Cart/> }></Route>
       </Routes>
-      {/* <Cart/>
-      <SearchImage/> */}
+      <FileUploadPage />
+      {/* <SearchImage/> */}
     </>
    
   );

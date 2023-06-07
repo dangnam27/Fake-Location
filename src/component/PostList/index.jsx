@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-// import Base64Image from './Base64Image';
-import axios from "axios";
+
+
 import { Link } from "react-router-dom";
 import Cart from "../Cart";
 
@@ -14,15 +14,11 @@ PostList.defaultProps = {
 
 function PostList(props) {
   const { posts } = props;
-
-
- 
   return (
     <>
       {posts &&
-        posts.map((post, index) => {
+        posts.map((post) => {
           return (
-
             <div className="card h-100 text-center" key={post.id}>
               <Link to="./Cart">
               <img
@@ -32,8 +28,6 @@ function PostList(props) {
                 height="150px"
               />
               </Link>
-          
- 
               <div className="card-body">
                 <p className="card-text lead fw-bold">{post.name}</p>
               </div>

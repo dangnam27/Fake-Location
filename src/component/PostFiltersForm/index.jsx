@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
 
+
 PostFiltersForm.propTypes = {
   onsubmit: PropTypes.func,
 };
@@ -12,6 +13,7 @@ function PostFiltersForm(props) {
   const { onSubmit } = props;
   const [searchTerm, setSearchTerm] = useState("");
   const typingTimeoutRef = useRef(null);
+  
 
   function handleSearchTermChange(e) {
     const value = e.target.value;

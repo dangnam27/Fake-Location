@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const request = axios.create({
-    baseURL: 'http://14.225.7.179:8081/docs'
+    baseURL: 'http://14.225.7.179:8081/'
 })
 
 export const get = async (path, optiton = {}) => {

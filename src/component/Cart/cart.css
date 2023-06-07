@@ -1,6 +1,10 @@
 .image-class {
-    height: 300px;
-    width: 300px;
+    height: 200px;
+    width: 200px;
     justify-content: center;
     border: 1px solid #ddd;
+    overflow: visible;
+}
+h5 {
+    color: blue;
 }

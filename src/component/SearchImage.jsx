@@ -4,6 +4,7 @@ import PostFiltersForm from "./PostFiltersForm";
 import PostList from "./PostList";
 import axios from "axios";
 
+
 function SearchImage() {
   const [postList, setPostList] = useState([]);
 
@@ -12,9 +13,10 @@ function SearchImage() {
       const res = await axios.get("http://14.225.7.179:8081/get_img/");
       setPostList(res.data);
     }
-    console.log(postList);
+   
     fetchPostList();
   }, []);
+  console.log(postList);
 
   function handleFiltersChanged(newFilters) {
     console.log("New filters", newFilters);
