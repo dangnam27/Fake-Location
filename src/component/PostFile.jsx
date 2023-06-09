@@ -31,12 +31,9 @@ function FileUploadPage() {
     setIsGroundPicked(true);
   };
 
- 
-
-
   async function handleSubmission() {
     setIsLinks(false);
-    // console.log(image)
+
     if (isFilePicked) {
       const formData = new FormData();
       formData.append("imagegoc", image.image1);
@@ -64,14 +61,14 @@ function FileUploadPage() {
       }
     }
   }
-   // download ảnh về 
-   const handleDownload = (url) => {
-    fetch (url)
+  // download ảnh về
+  const handleDownload = (url) => {
+    fetch(url)
       .then((response) => response.json())
       .then((blob) => {
         const blobURL = window.URL.createObjectURL(new Blob([blob]));
         const fileName = url.split("/").pop();
-        const aTag = document.createElement("a");
+        const aTag = document.createElement("aTag");
         aTag.href = blobURL;
         aTag.setAttribute("download", fileName);
         document.body.appendChild(aTag);
@@ -88,7 +85,6 @@ function FileUploadPage() {
         "https://api.imgbb.com/1/upload?expiration=60&key=7239a119b60707f567ebd17c097f5696",
         formData
       );
-
       console.log(response.data.data.url);
       cb(response.data.data.url);
     } catch (error) {
@@ -112,7 +108,7 @@ function FileUploadPage() {
   //   };
   //   reader.readAsDataURL(selectedGround);
   // }
-  
+
   return (
     <div className="container-fluid ms-5 row">
       <div className="d-inline col-md-4">
@@ -156,7 +152,7 @@ function FileUploadPage() {
           <p></p>
         )}
       </div>
-      
+
       <div className="col-md-4">
         <div></div>
         <button
@@ -166,10 +162,15 @@ function FileUploadPage() {
         >
           Submit
         </button>
-        <button className=" btn btn-outline-success ms-1" onClick={() =>{handleDownload(image.image1)}}>
+        <button
+          className=" btn btn-outline-success ms-1"
+          onClick={() => {
+            handleDownload(image.image1);
+          }}
+        >
           Download file
         </button>
-        
+
         {isLinks ? (
           <div className="imageDiv">
             <p className="p-2 text-primary fw-bold"> Ảnh hoàn thiện </p>
