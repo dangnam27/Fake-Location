@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { json } from "react-router-dom";
 
 function FileUploadPage() {
   const [imageData, setImageData] = useState(null);
   const [groundData, setGroundData] = useState(null);
   const [selectedFile, setSelectedFile] = useState("");
   const [selectedGround, setSelectedGround] = useState("");
+  const [links, setLinks] = useState(null)
 
   const [isFilePicked, setIsFilePicked] = useState(false);
   const [isGroundPicked, setIsGroundPicked] = useState(false);
@@ -31,7 +33,7 @@ function FileUploadPage() {
   };
   // console.log(image)
 
-  // post lên imgbb
+ 
   async function handleSubmission() {
     // console.log(image)
     if (isFilePicked) {
@@ -41,15 +43,26 @@ function FileUploadPage() {
       try {
         const response = await axios.post(
           "http://14.225.7.179:8081/change_background/",
-          formData
+          formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+              "imagegoc": image.image1,
+              "imagebackground": image.image2,
+            },
+          }
         );
-        console.log(response.data.data.url);
+       
+        console.log(response.data.linkreturn);
+        setLinks(response.data.linkreturn);
+        console.log("đây là link ảnh", links);
+        
       } catch (error) {
         console.error(error);
         return null;
       }
     }
   }
+   // post lên imgbb
  async function uploadFile(file, cb) {
     const formData = new FormData();
       formData.append("image", file);
@@ -58,6 +71,7 @@ function FileUploadPage() {
           "https://api.imgbb.com/1/upload?expiration=60&key=7239a119b60707f567ebd17c097f5696",
           formData
         );
+       
         console.log(response.data.data.url);
         cb(response.data.data.url);
 
@@ -128,6 +142,13 @@ function FileUploadPage() {
         >
           Submit
         </button>{" "}
+        {isFilePicked ? (
+          <div>
+            <img src={links} alt="Image" style={{ maxWidth: "300px" }} />
+          </div>
+        ) : (
+          <p></p>
+        )}
         {/* </Link> */}
       </div>
     </div>
