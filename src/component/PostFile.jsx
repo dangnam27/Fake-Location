@@ -15,6 +15,7 @@ function FileUploadPage() {
   const [image, setImage] = useState({ image1: "", image2: "" });
   const [isLinks, setIsLinks] = useState(true);
 
+
   const changeHandler = async (event) => {
     uploadFile(event.target.files[0], (str) => {
       setImage({ ...image, image1: str });
@@ -139,16 +140,16 @@ function FileUploadPage() {
           <p></p>
         )}
       </div>
-
       <div className="col-md-4">
-        {/* <Link to=""> */}{" "}
+        <div></div>
         <button
           className="btn btn-outline-warning"
           id="post"
           onClick={handleSubmission}
         >
           Submit
-        </button>{" "}
+        </button>
+
         {isLinks ? (
           <div className="imageDiv">
             <p className="p-2 text-primary fw-bold"> Ảnh hoàn thiện </p>
@@ -164,7 +165,6 @@ function FileUploadPage() {
             <Loading />
           </div>
         )}
-        {/* </Link> */}
       </div>
     </div>
   );
