@@ -1,0 +1,18 @@
+
+.spiner {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    border: 10px solid white;
+    border-radius: 50%;
+    border-top: 10px solid #ff8000;
+    animation: spiner 1.5s linear infinite;
+    background-color: #ffffff;
+    justify-content: center;
+  }
+  @keyframes spiner {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
