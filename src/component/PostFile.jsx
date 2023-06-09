@@ -9,47 +9,62 @@ function FileUploadPage() {
 
   const [isFilePicked, setIsFilePicked] = useState(false);
   const [isGroundPicked, setIsGroundPicked] = useState(false);
+  const [image, setImage] = useState({image1:'', image2: ''});
 
   const changeHandler = async (event) => {
+
+    uploadFile(event.target.files[0], (str)=>{
+      setImage({...image, image1:str});
+    });
+    
     setSelectedFile(event.target.files[0]);
     setIsFilePicked(true);
+
   };
   const changeHandlerGround = async (event) => {
+    uploadFile(event.target.files[0], (str)=>{
+      setImage({...image, image2:str});
+    });
     setSelectedGround(event.target.files[0]);
     setIsGroundPicked(true);
+    
   };
-  // // chuyển image sang base64
-  function fileToBase64(file, cb) {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = function () {
-      cb(reader.result);
-    };
-    reader.onerror = function (error) {
-      console.log("Error: ", error);
-    };
-  }
-
- 
+  // console.log(image)
 
   // post lên imgbb
   async function handleSubmission() {
+    // console.log(image)
     if (isFilePicked) {
       const formData = new FormData();
-      formData.append("file", setSelectedFile);
-      // formData.append("imagebackground", selectedGround);
+      formData.append("imagegoc", image.image1);
+      formData.append("imagebackground", image.image2);
       try {
         const response = await axios.post(
-          "https://api.imgbb.com/1/upload?expiration=60&key=7239a119b60707f567ebd17c097f5696",
+          "http://14.225.7.179:8081/change_background/",
           formData
         );
-        // return response.data.data.url;
         console.log(response.data.data.url);
       } catch (error) {
         console.error(error);
         return null;
       }
     }
+  }
+ async function uploadFile(file, cb) {
+    const formData = new FormData();
+      formData.append("image", file);
+      try {
+        const response = await axios.post(
+          "https://api.imgbb.com/1/upload?expiration=60&key=7239a119b60707f567ebd17c097f5696",
+          formData
+        );
+        console.log(response.data.data.url);
+        cb(response.data.data.url);
+
+      } catch (error) {
+        console.error(error);
+        return null;
+      }
   }
 
   if (isFilePicked) {
@@ -72,12 +87,10 @@ function FileUploadPage() {
     <div className="container-fluid ms-5 row">
       <div className="d-inline col-md-4">
         <input
-          id="Img1"
           type="file"
           name="file"
           onChange={changeHandler}
           className="btn btn-outline-warning"
-          multiple="multiple"
         />
         <p>Ảnh gốc</p>
         {isFilePicked ? (
@@ -95,7 +108,6 @@ function FileUploadPage() {
           name="file"
           onChange={changeHandlerGround}
           className="btn btn-outline-warning"
-          multiple="multiple"
         />
         <p>Ảnh BackGround</p>
         {isFilePicked ? (
