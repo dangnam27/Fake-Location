@@ -4,8 +4,8 @@ import Loading from "./Loading";
 import "../style/PostFile.css";
 
 function FileUploadPage() {
-  const [imageData, setImageData] = useState(null);
-  const [groundData, setGroundData] = useState(null);
+  // const [imageData, setImageData] = useState(null);
+  // const [groundData, setGroundData] = useState(null);
   const [selectedFile, setSelectedFile] = useState("");
   const [selectedGround, setSelectedGround] = useState("");
   const [links, setLinks] = useState(null);
@@ -14,7 +14,6 @@ function FileUploadPage() {
   const [isGroundPicked, setIsGroundPicked] = useState(false);
   const [image, setImage] = useState({ image1: "", image2: "" });
   const [isLinks, setIsLinks] = useState(true);
-
 
   const changeHandler = async (event) => {
     uploadFile(event.target.files[0], (str) => {
@@ -31,7 +30,9 @@ function FileUploadPage() {
     setSelectedGround(event.target.files[0]);
     setIsGroundPicked(true);
   };
-  // console.log(image)
+
+ 
+
 
   async function handleSubmission() {
     setIsLinks(false);
@@ -63,6 +64,21 @@ function FileUploadPage() {
       }
     }
   }
+   // download ảnh về 
+   const handleDownload = (url) => {
+    fetch (url)
+      .then((response) => response.json())
+      .then((blob) => {
+        const blobURL = window.URL.createObjectURL(new Blob([blob]));
+        const fileName = url.split("/").pop();
+        const aTag = document.createElement("a");
+        aTag.href = blobURL;
+        aTag.setAttribute("download", fileName);
+        document.body.appendChild(aTag);
+        aTag.click();
+        aTag.remove();
+      });
+  };
   // post lên imgbb
   async function uploadFile(file, cb) {
     const formData = new FormData();
@@ -81,22 +97,22 @@ function FileUploadPage() {
     }
   }
 
-  if (isFilePicked) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      setImageData(reader.result);
-    };
-    reader.readAsDataURL(selectedFile);
-  }
+  // if (isFilePicked) {
+  //   const reader = new FileReader();
+  //   reader.onload = () => {
+  //     setImageData(reader.result);
+  //   };
+  //   reader.readAsDataURL(selectedFile);
+  // }
 
-  if (isGroundPicked) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      setGroundData(reader.result);
-    };
-    reader.readAsDataURL(selectedGround);
-  }
-
+  // if (isGroundPicked) {
+  //   const reader = new FileReader();
+  //   reader.onload = () => {
+  //     setGroundData(reader.result);
+  //   };
+  //   reader.readAsDataURL(selectedGround);
+  // }
+  
   return (
     <div className="container-fluid ms-5 row">
       <div className="d-inline col-md-4">
@@ -110,7 +126,7 @@ function FileUploadPage() {
         {isFilePicked ? (
           <div className="imageDiv">
             <img
-              src={imageData}
+              src={image.image1}
               alt="Image"
               style={{ maxWidth: "300px", maxHeight: "400px" }}
             />
@@ -131,7 +147,7 @@ function FileUploadPage() {
         {isFilePicked ? (
           <div className="imageDiv">
             <img
-              src={groundData}
+              src={image.image2}
               alt="Image"
               style={{ maxWidth: "300px", maxHeight: "400px" }}
             />
@@ -140,6 +156,7 @@ function FileUploadPage() {
           <p></p>
         )}
       </div>
+      
       <div className="col-md-4">
         <div></div>
         <button
@@ -149,7 +166,10 @@ function FileUploadPage() {
         >
           Submit
         </button>
-
+        <button className=" btn btn-outline-success ms-1" onClick={() =>{handleDownload(image.image1)}}>
+          Download file
+        </button>
+        
         {isLinks ? (
           <div className="imageDiv">
             <p className="p-2 text-primary fw-bold"> Ảnh hoàn thiện </p>
