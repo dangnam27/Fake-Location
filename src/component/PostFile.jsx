@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import Loading from "./Loading";
 import "../style/PostFile.css";
+import { saveAs } from 'file-saver';
+
 
 function FileUploadPage() {
   // const [imageData, setImageData] = useState(null);
@@ -62,20 +64,18 @@ function FileUploadPage() {
     }
   }
   // download ảnh về
-  const handleDownload = (url) => {
-    fetch(url)
-      .then((response) => response.json())
-      .then((blob) => {
-        const blobURL = window.URL.createObjectURL(new Blob([blob]));
-        const fileName = url.split("/").pop();
-        const aTag = document.createElement("aTag");
-        aTag.href = blobURL;
-        aTag.setAttribute("download", fileName);
-        document.body.appendChild(aTag);
-        aTag.click();
-        aTag.remove();
-      });
-  };
+
+function handleDownload(url) {
+  axios({
+    url: url,
+    method: 'GET',
+    responseType: 'blob'
+  }).then((response) => {
+    const blob = new Blob([response.data], { type: 'image/jpeg' });
+    saveAs(blob, 'image.jpg');
+  });
+}
+
   // post lên imgbb
   async function uploadFile(file, cb) {
     const formData = new FormData();
@@ -92,22 +92,6 @@ function FileUploadPage() {
       return null;
     }
   }
-
-  // if (isFilePicked) {
-  //   const reader = new FileReader();
-  //   reader.onload = () => {
-  //     setImageData(reader.result);
-  //   };
-  //   reader.readAsDataURL(selectedFile);
-  // }
-
-  // if (isGroundPicked) {
-  //   const reader = new FileReader();
-  //   reader.onload = () => {
-  //     setGroundData(reader.result);
-  //   };
-  //   reader.readAsDataURL(selectedGround);
-  // }
 
   return (
     <div className="container-fluid ms-5 row">
@@ -165,7 +149,7 @@ function FileUploadPage() {
         <button
           className=" btn btn-outline-success ms-1"
           onClick={() => {
-            handleDownload(image.image1);
+            handleDownload(links);
           }}
         >
           Download file
