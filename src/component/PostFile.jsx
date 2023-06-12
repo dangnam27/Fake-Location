@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Loading from "./Loading";
 import "../style/PostFile.css";
-import { saveAs } from 'file-saver';
-
+import { saveAs } from "file-saver";
 
 function FileUploadPage() {
   // const [imageData, setImageData] = useState(null);
@@ -65,16 +64,16 @@ function FileUploadPage() {
   }
   // download ảnh về
 
-function handleDownload(url) {
-  axios({
-    url: url,
-    method: 'GET',
-    responseType: 'blob'
-  }).then((response) => {
-    const blob = new Blob([response.data], { type: 'image/jpeg' });
-    saveAs(blob, 'image.jpg');
-  });
-}
+  function handleDownload(url) {
+    axios({
+      url: url,
+      method: "GET",
+      responseType: "blob",
+    }).then((response) => {
+      const blob = new Blob([response.data], { type: "image/jpeg" });
+      saveAs(blob, "image.jpg");
+    });
+  }
 
   // post lên imgbb
   async function uploadFile(file, cb) {
