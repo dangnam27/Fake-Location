@@ -53,15 +53,16 @@ function Registration() {
         password: values.password,
         confirmedPassword: values.confirmedPassword,
       };
-      console.log(registrationData);
       axios
         .post("http://14.225.7.179:8081/signup", registrationData)
         .then((response) => {
+          console.log(response);
           alert(" Bạn đã đăng ký thành công");
           navigate("/Login");
         })
         .catch((error) => {
           console.log(error.message);
+          console.log("Lỗi");
         });
     },
   });
