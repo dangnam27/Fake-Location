@@ -2,7 +2,7 @@ import React from "react";
 import "../style/Search.css";
 import { NavLink } from "react-router-dom";
 
-function Search() {
+function Header() {
   const SearchItem = (e) => {
     let value = e.target.value.trim().toLowerCase();
   };
@@ -10,7 +10,7 @@ function Search() {
     <div className="backg">
       <nav className=" container navbar d-flex ">
       <NavLink to="/Home">
-      <i className="fa-sharp fa-solid fa-house fa-2xl"></i>
+      <i class="fa-sharp fa-solid fa-house fa-2xl"></i>
           </NavLink>
         <div className="search">
          
@@ -29,16 +29,16 @@ function Search() {
           </form>
         </div>
         
-        <div>
+        {/* <div>
           <NavLink to="/Login">
             <button className="btn btn-dark">Login</button>
           </NavLink>
           <NavLink to="/Registration">
             <button className="ms-1 btn btn-dark">Registration</button>
           </NavLink>
-        </div>
+        </div> */}
       </nav>
     </div>
   );
 }
-export default Search;
+export default Header;

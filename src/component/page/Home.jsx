@@ -1,24 +1,14 @@
 import React from "react";
-import Search from "./component/Search";
-import Navbar from "./component/Navbar";
 import { Route, Routes } from "react-router-dom";
-import FileUploadPage from "./component/PostFile";
+import FileUploadPage from "../PostFile";
+import Header from "../Header";
+import Navbar from "../Navbar";
 
 function Home() {
   return (
-    <div>
-      return (
       <>
-        <Search />
-        <Navbar />
-        <Routes>
-          <Route path="/Navbar" element={<Navbar />}></Route>
-        </Routes>
-        <FileUploadPage />
+        <FileUploadPage/>
       </>
-      );
-    </div>
   );
 }
-
 export default Home;

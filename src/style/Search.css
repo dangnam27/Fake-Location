@@ -2,7 +2,6 @@
 .d-flex  {
     
     justify-content:flex-start;
-   
 }
 .backg {
     background-color: brown;
@@ -15,10 +14,9 @@
     padding: 5px 10px;
     font-size: 18px;
     border-radius: 5px;
-    width:400px;
     color: blueviolet;
     background-color: rgb(255, 255, 255);
-    padding-left: 20px;
+   
 }
 
 .search input {
@@ -37,4 +35,17 @@
 .search .button {
     border: none;
     
+}
+.search {
+    width: 30%;
+}
+@media screen and (max-width: 1000px) {
+    .search {
+        width: 45%;
+    }
+}
+@media screen and (max-width: 700px) {
+    .search{
+        width: 65%;
+    }
 }
