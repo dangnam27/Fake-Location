@@ -10,7 +10,7 @@ function Header() {
     <div className="backg">
       <nav className=" container navbar d-flex ">
       <NavLink to="/Home">
-      <i class="fa-sharp fa-solid fa-house fa-2xl"></i>
+      <i className="fa-sharp fa-solid fa-house fa-2xl"></i>
           </NavLink>
         <div className="search">
          

@@ -23,12 +23,12 @@ function Registration() {
       confirmedPassword: "",
     },
     validationSchema: Yup.object({
-      full_name: Yup.string()
-        .required(null)
-        .min(6, "Must be 6 characters or more"),
       user_name: Yup.string()
         .required(null)
         .min(4, "Must be 4 characters or more"),
+        full_name: Yup.string()
+        .required(null)
+        .min(6, "Must be 6 characters or more"),
       email: Yup.string()
         .required(null)
         .matches(

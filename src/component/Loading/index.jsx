@@ -4,7 +4,7 @@ import './loading.css'
 export default function Loading() {
   return (
     <div>
-        <div class="spiner"></div>
+        <div className="spiner"></div>
     </div>
   )
 }
