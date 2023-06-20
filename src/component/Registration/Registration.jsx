@@ -75,7 +75,7 @@ function Registration() {
       };
       
       axios
-        .post("http://14.225.7.179:8081/signup", registrationData)
+        .post("http://14.225.7.179:2989/signup", registrationData)
         .then((response) => {
           console.log(response);
           alert(" Bạn đã đăng ký thành công");

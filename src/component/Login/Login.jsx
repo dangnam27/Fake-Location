@@ -18,7 +18,7 @@ function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Gửi yêu cầu đăng nhập đến máy chủ
-    axios.post('http://14.225.7.179:8081/login',{
+    axios.post('http://14.225.7.179:2989/login',{
       email: email,
       password: password,
     })
