@@ -9,11 +9,21 @@ import { NavLink } from "react-router-dom";
 function Registration() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [ipAddress, setIpAddress] = useState("");
+  
 
   const handleTogglePassword = () => {
     setShowPassword((showPassword) => !showPassword);
   };
 
+  useEffect(() => {
+    async function getIpRegiste() {
+      const res = await axios.get('https://api.ipify.org/?format=json');
+      const data = res.data;
+      setIpAddress(data.ip);
+    }
+    getIpRegiste();
+  }, []);
   const formik = useFormik({
     initialValues: {
       full_name: "",
@@ -26,7 +36,12 @@ function Registration() {
       user_name: Yup.string()
         .required(null)
         .min(4, "Must be 4 characters or more"),
-        full_name: Yup.string()
+      ip_register: Yup.string().required(null),
+
+      device_register: Yup.string().required(null),
+      
+
+      full_name: Yup.string()
         .required(null)
         .min(6, "Must be 6 characters or more"),
       email: Yup.string()
@@ -45,14 +60,20 @@ function Registration() {
         .required(null)
         .oneOf([Yup.ref("password")], "Password must match"),
     }),
+   
     onSubmit: (values) => {
+    
       const registrationData = {
+
         full_name: values.full_name,
         user_name: values.user_name,
         email: values.email,
         password: values.password,
         confirmedPassword: values.confirmedPassword,
+        ip_register: ipAddress,
+        device_register: "web",
       };
+      
       axios
         .post("http://14.225.7.179:8081/signup", registrationData)
         .then((response) => {
@@ -63,6 +84,7 @@ function Registration() {
         .catch((error) => {
           console.log(error.message);
           console.log("Lỗi");
+          console.log(registrationData)
         });
     },
   });
@@ -71,7 +93,7 @@ function Registration() {
     <div className="signup template d-flex justify-content-center align-items-center vh-100 bg-primary">
       <div className=" form-container  p-5 rounded bg-white">
         <form onSubmit={formik.handleSubmit}>
-        <h3 className="text-center">Sign In</h3>
+          <h3 className="text-center">Sign In</h3>
           <label> Full name </label>
           <input
             className="mb-2"
@@ -109,7 +131,11 @@ function Registration() {
             placeholder="Enter your email"
             autoComplete="username"
           />
-          <i className="fa-solid fa-eye p-1" checked={showPassword} onClick={handleTogglePassword}></i>
+          <i
+            className="fa-solid fa-eye p-1"
+            checked={showPassword}
+            onClick={handleTogglePassword}
+          ></i>
           {formik.errors.email && (
             <p className="errorMsg"> {formik.errors.email} </p>
           )}
@@ -124,7 +150,7 @@ function Registration() {
             placeholder="Enter your password"
             autoComplete="new-password"
           />
-          
+
           {formik.errors.password && (
             <p className="errorMsg"> {formik.errors.password} </p>
           )}
@@ -142,6 +168,19 @@ function Registration() {
           {formik.errors.confirmedPassword && (
             <p className="errorMsg"> {formik.errors.confirmedPassword} </p>
           )}
+          {formik.errors.ip_register && (
+            <p className="errorMsg"> {formik.errors.ip_register} </p>
+          )}
+          {/* <label> IP Register </label>
+          <input
+            className="mb-2"
+            type="text"
+            id="ip_register"
+            name="ip_register"
+            value={formik.values.ip_register}
+            onChange={formik.handleChange}
+            placeholder="Enter ip register"
+          /> */}
           <div className="d-grid mt-2">
             <button className=" btn btn-primary" type="submit">
               Sign Up
