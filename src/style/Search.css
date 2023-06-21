@@ -49,3 +49,36 @@
         width: 65%;
     }
 }
+.background  {
+    background-image: url("https://img.freepik.com/premium-photo/colorful-background-with-watercolor-background-that-says-watercolor_782419-2086.jpg?w=740");
+    background-size: cover;
+    background-position: center;
+    height: 700px;
+}
+.login {
+   padding-top: 30px;
+    z-index: 3;
+    justify-content: center;
+    display: flex;
+    height: 50px;
+    width: 100px;
+}
+
+.background .row img{
+    height:500px;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+    object-position: center;
+   
+   
+}
+.background .photo_sample {
+    margin-top: 70px;
+    
+}
+.background .photo_sample .col-md-3 {
+padding-left: 20px;
+}

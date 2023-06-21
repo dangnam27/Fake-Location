@@ -29,14 +29,14 @@ function Header() {
           </form>
         </div>
         
-        {/* <div>
+        <div>
           <NavLink to="/Login">
-            <button className="btn btn-dark">Login</button>
+            <button className="btn btn-dark">Logout</button>
           </NavLink>
-          <NavLink to="/Registration">
-            <button className="ms-1 btn btn-dark">Registration</button>
+          <NavLink to="/Login">
+            <button className="ms-2 btn btn-dark"><i className="fa-solid fa-user"></i></button>
           </NavLink>
-        </div> */}
+        </div>
       </nav>
     </div>
   );

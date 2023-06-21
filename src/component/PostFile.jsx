@@ -5,8 +5,8 @@ import "../style/PostFile.css";
 import { saveAs } from "file-saver";
 
 function FileUploadPage() {
-  // const [imageData, setImageData] = useState(null);
-  // const [groundData, setGroundData] = useState(null);
+ 
+
   const [selectedFile, setSelectedFile] = useState("");
   const [selectedGround, setSelectedGround] = useState("");
   const [links, setLinks] = useState(null);
@@ -20,15 +20,26 @@ function FileUploadPage() {
     uploadFile(event.target.files[0], (str) => {
       setImage({ ...image, image1: str });
     });
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setSelectedFile(reader.result);
+    };
 
-    setSelectedFile(event.target.files[0]);
+
     setIsFilePicked(true);
   };
   const changeHandlerGround = async (event) => {
     uploadFile(event.target.files[0], (str) => {
       setImage({ ...image, image2: str });
     });
-    setSelectedGround(event.target.files[0]);
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setSelectedGround(reader.result);
+    };
     setIsGroundPicked(true);
   };
 
@@ -91,6 +102,7 @@ function FileUploadPage() {
       return null;
     }
   }
+  
 
   return (
     <div className="container-fluid ms-5 row">
@@ -105,7 +117,7 @@ function FileUploadPage() {
         {isFilePicked ? (
           <div className="imageDiv">
             <img
-              src={image.image1}
+              src={selectedFile}
               alt="Image"
               style={{ maxWidth: "300px", maxHeight: "400px" }}
             />
@@ -126,7 +138,7 @@ function FileUploadPage() {
         {isFilePicked ? (
           <div className="imageDiv">
             <img
-              src={image.image2}
+              src={selectedGround}
               alt="Image"
               style={{ maxWidth: "300px", maxHeight: "400px" }}
             />
