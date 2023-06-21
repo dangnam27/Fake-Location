@@ -51,7 +51,7 @@ function Search() {
             </div>
             <div className="col-md-3 ms-3 col-sm-12 card p-3">
               <img src="../asset/bacnkground.jpg" alt="" className="card-img-top "/>
-              <h4 className="text-center card-title pt-2">Ảnh Back Ground</h4>
+              <h4 className="text-center card-title pt-2">Ảnh BackGround</h4>
             </div>
             <div className="col-md-3  ms-3 col-sm-12 card">
               <img src="../asset/image.jpg" alt="" className="card-img-top" />
