@@ -3,6 +3,8 @@ import axios from "axios";
 import Loading from "./Loading";
 import "../style/PostFile.css";
 import { saveAs } from "file-saver";
+import Header from "./Header";
+import { createClient } from "pexels";
 
 function FileUploadPage() {
  
@@ -75,6 +77,8 @@ function FileUploadPage() {
   }
   // download ảnh về
 
+
+
   function handleDownload(url) {
     axios({
       url: url,
@@ -102,9 +106,35 @@ function FileUploadPage() {
       return null;
     }
   }
-  
+  // piliex
+  const [imageUrls, setImageUrls] = useState([]);
+
+  async function handleFilterChange(newFilter, photos) {
+    try {
+      const client = createClient(
+        "NqYb6lacRmDLsyN6i31xRcr842G3d9GEKdJ7ywSjq7Amx7WftErRwZHw"
+      );
+      const query = JSON.stringify(newFilter.search);
+      console.log(query);
+      const response = await client.photos.search({ query, per_page: 10 });
+      const photos = response.photos;
+      const urls = photos.map((photo) => photo.src.large);
+      setImageUrls(urls);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  const renderImages = () => {
+    return imageUrls.map((url) => (
+      <div className="col-md-4" key={url}>
+          <img src={url} alt="" height="400px" width="400px" />
+      </div>
+    ));
+  };
+
 
   return (
+    <>
     <div className="container-fluid ms-5 row">
       <div className="d-inline col-md-4">
         <input
@@ -183,6 +213,7 @@ function FileUploadPage() {
         )}
       </div>
     </div>
+    </>
   );
 }
 export default FileUploadPage;

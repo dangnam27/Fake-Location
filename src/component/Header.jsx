@@ -1,10 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import "../style/Search.css";
 import { NavLink } from "react-router-dom";
+import { useRef } from "react";
+import PropTypes from "prop-types";
 
-function Header() {
-  const SearchItem = (e) => {
-    let value = e.target.value.trim().toLowerCase();
+Header.propTypes ={
+  onSubmit: PropTypes.func,
+}
+Header.defaultProps = {
+  onSubmit: null,
+};
+
+function Header(props) {
+  const {onSubmit} = props;
+  const [searchI, setSearchI] = useState('')
+  const typingTimeoutRef = useRef(null)
+
+  const SearchIterm = (e) => {
+    const value = e.target.value.trim().toLowerCase();
+    setSearchI(value);
+    if (!onSubmit) return;
+
+    if (typingTimeoutRef.current){
+      clearTimeout(typingTimeoutRef.current);
+    };
+    typingTimeoutRef.current =setTimeout(() => {
+      const formValue = {
+        search : value,
+      };
+      onSubmit(formValue)
+    }, 300);
   };
   return (
     <div className="backg">
@@ -19,7 +44,8 @@ function Header() {
               <i className="fa-solid fa-magnifying-glass p-1"></i>
             </button>
             <input
-              onChange={SearchItem}
+            value={searchI}
+              onChange={SearchIterm}
               className="form-control"
               id="Search"
               type="search"

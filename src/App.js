@@ -6,11 +6,13 @@ import Login from "./component/Login/Login";
 import Registration from "./component/Registration/Registration";
 import Home from "./component/page/Home";
 function App() {
-  
+
+ 
+     
   return (
     <>
       <Routes>
-          <Route path="/" element={  <Search/> }></Route>
+          <Route path="/" element={ <Search /> }></Route>
           <Route path="/Home" element={ <Home /> }></Route>
           <Route path="/Registration" element={ <Registration/> }></Route>
           <Route path="/Login" element={ <Login/> }></Route>

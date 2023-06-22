@@ -1,12 +1,14 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {  Link } from "react-router-dom";
 import '../style/Navbar.css';
+import { createClient } from "pexels";
+import Header from "./Header";
 
+ function Navbar() {
+   
 
-export default function Navbar() {
   return (
     <>
-
             <div className="container justify-content-center text-center pt-3">
             <div className="row">
                 <div className="col">
@@ -55,3 +57,4 @@ export default function Navbar() {
     </>
   )
 }
+export default Navbar;

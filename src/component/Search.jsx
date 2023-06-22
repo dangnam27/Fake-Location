@@ -1,10 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import "../style/Search.css";
 import { NavLink } from "react-router-dom";
+import { useRef } from "react";
+import PropTypes from "prop-types";
 
-function Search() {
-  const SearchItem = (e) => {
-    let value = e.target.value.trim().toLowerCase();
+Search.propTypes = {
+  onSubmit: PropTypes.func,
+};
+Search.defaultProps = {
+  onSubmit: null,
+};
+
+function Search(props) {
+  const { onSubmit } = props;
+  const [searchI, setSearchI] = useState("");
+  const typingTimeoutRef = useRef(null);
+
+  const SearchIterm = (e) => {
+    const value = e.target.value;
+    setSearchI(value);
+    if (!onSubmit) return;
+
+    if (typingTimeoutRef.current) {
+      clearTimeout(typingTimeoutRef.current);
+    }
+    typingTimeoutRef.current = setTimeout(() => {
+      const formValue = {
+        search: value,
+      };
+      onSubmit(formValue);
+    }, 300);
   };
   return (
     <>
@@ -19,7 +44,8 @@ function Search() {
                 <i className="fa-solid fa-magnifying-glass p-1"></i>
               </button>
               <input
-                onChange={SearchItem}
+                value={searchI}
+                onChange={SearchIterm}
                 className="form-control"
                 id="Search"
                 type="search"
@@ -46,11 +72,15 @@ function Search() {
           </div>
           <div className="row photo_sample">
             <div className="col-md-3  col-sm-12 card">
-              <img src="../asset/goc.jpg" alt="" className="card-img-top"/>
+              <img src="../asset/goc.jpg" alt="" className="card-img-top" />
               <h4 className="text-center card-title pt-2">Ảnh Gốc</h4>
             </div>
             <div className="col-md-3 ms-3 col-sm-12 card p-3">
-              <img src="../asset/bacnkground.jpg" alt="" className="card-img-top "/>
+              <img
+                src="../asset/bacnkground.jpg"
+                alt=""
+                className="card-img-top "
+              />
               <h4 className="text-center card-title pt-2">Ảnh BackGround</h4>
             </div>
             <div className="col-md-3  ms-3 col-sm-12 card">
