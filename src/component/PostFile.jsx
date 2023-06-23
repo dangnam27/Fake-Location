@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Loading from "./Loading";
 import "../style/PostFile.css";
@@ -8,7 +8,7 @@ import { saveAs } from "file-saver";
 
 function FileUploadPage (props) {
   const {selectedImage} = props;
-  console.log('1',selectedImage);
+
   const [selectedFile, setSelectedFile] = useState("");
   const [selectedGround, setSelectedGround] = useState("");
   const [links, setLinks] = useState(null);
@@ -17,6 +17,15 @@ function FileUploadPage (props) {
   const [isGroundPicked, setIsGroundPicked] = useState(false);
   const [image, setImage] = useState({ image1: "", image2: "" });
   const [isLinks, setIsLinks] = useState(true);
+
+
+  useEffect(() => {
+    if (selectedImage) {
+      setSelectedGround(selectedImage);
+      setImage({ ...image, image2: selectedImage })
+      setIsFilePicked(true);
+    }
+  }, [selectedImage]);
 
   const changeHandler = async (event) => {
     uploadFile(event.target.files[0], (str) => {
@@ -28,8 +37,6 @@ function FileUploadPage (props) {
     reader.onload = () => {
       setSelectedFile(reader.result);
     };
-
-
     setIsFilePicked(true);
   };
   const changeHandlerGround = async (event) => {
