@@ -48,7 +48,7 @@ function Search(props) {
                 onChange={SearchIterm}
                 className="form-control"
                 id="Search"
-                type="search"
+                type="text"
                 placeholder="Tìm kiếm thứ bạn thích"
                 aria-label="Search"
               />
