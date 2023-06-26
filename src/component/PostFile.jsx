@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Loading from "./Loading";
 import "../style/PostFile.css";
-import { saveAs } from "file-saver"; 
+import { saveAs } from "file-saver";
+import PostComments from "./PostComments";
 
-
-
-function FileUploadPage (props) {
-  const {selectedImage} = props;
+function FileUploadPage(props) {
+  const { selectedImage } = props;
 
   const [selectedFile, setSelectedFile] = useState("");
   const [selectedGround, setSelectedGround] = useState("");
@@ -18,11 +17,16 @@ function FileUploadPage (props) {
   const [image, setImage] = useState({ image1: "", image2: "" });
   const [isLinks, setIsLinks] = useState(true);
 
+  const [comments, setComments] = useState([]);
+
+  function handleCommentAdded(commentText) {
+    setComments([...comments, commentText]);
+  }
 
   useEffect(() => {
     if (selectedImage) {
       setSelectedGround(selectedImage);
-      setImage({ ...image, image2: selectedImage })
+      setImage({ ...image, image2: selectedImage });
       setIsFilePicked(true);
     }
   }, [selectedImage]);
@@ -71,10 +75,9 @@ function FileUploadPage (props) {
             },
           }
         );
-
-        console.log(response.data.linkreturn);
         setLinks(response.data.linkreturn);
-        console.log("đây là link ảnh", links);
+        console.log("đây là link ảnh", response.data);
+        console.log("đây là link ảnh:", links);
         setIsLinks(true);
       } catch (error) {
         console.error(error);
@@ -114,84 +117,91 @@ function FileUploadPage (props) {
 
   return (
     <>
-    <div className="container-fluid ms-5 row">
-      <div className="d-inline col-md-4">
-        <input
-          type="file"
-          name="file"
-          onChange={changeHandler}
-          className="btn btn-outline-warning"
-        />
-        <p className="p-2 text-primary fw-bold">Ảnh gốc</p>
-        {isFilePicked ? (
-          <div className="imageDiv">
-            <img
-              src={selectedFile}
-              alt="Image"
-              style={{ maxWidth: "300px", maxHeight: "400px" }}
-            />
-          </div>
-        ) : (
-          <p></p>
-        )}
-      </div>
+      <div className="container-fluid ms-5 row">
+        <div className="d-inline col-md-4">
+          <input
+            type="file"
+            name="file"
+            onChange={changeHandler}
+            className="btn btn-outline-warning"
+          />
+          <p className="p-2 text-primary fw-bold">Ảnh gốc</p>
+          {isFilePicked ? (
+            <div className=" col-md-8   card p-3">
+              <img
+                src={selectedFile}
+                alt="Image"
+                style={{ maxWidth: "300px", maxHeight: "400px" }}
+                className="card-img-top"
+              />
+            </div>
+          ) : (
+            <p></p>
+          )}
+        </div>
 
-      <div className="col-md-4">
-        <input
-          type="file"
-          name="file"
-          onChange={changeHandlerGround}
-          className="btn btn-outline-warning"
-        />
-        <p className="p-2 text-primary fw-bold">Ảnh BackGround</p>
-        {isFilePicked ? (
-          <div className="imageDiv">
-            <img
-              src={selectedGround}
-              alt="Image"
-              style={{ maxWidth: "300px", maxHeight: "400px" }}
-            />
-          </div>
-        ) : (
-          <p></p>
-        )}
-      </div>
+        <div className="col-md-4">
+          <input
+            type="file"
+            name="file"
+            onChange={changeHandlerGround}
+            className="btn btn-outline-warning"
+          />
+          <p className="p-2 text-primary fw-bold">Ảnh BackGround</p>
+          {isGroundPicked ? (
+            <div className="imageDiv col-md-8   card p-3">
+              <img
+                src={selectedGround}
+                alt="Image"
+                style={{ maxWidth: "300px", maxHeight: "400px" }}
+              />
+            </div>
+          ) : (
+            <p></p>
+          )}
+        </div>
 
-      <div className="col-md-4">
-        <div></div>
-        <button
-          className="btn btn-outline-warning"
-          id="post"
-          onClick={handleSubmission}
-        >
-          Submit
-        </button>
-        <button
-          className=" btn btn-outline-success ms-1"
-          onClick={() => {
-            handleDownload(links);
-          }}
-        >
-          Download file
-        </button>
+        <div className="col-md-4">
+          <div></div>
+          <button
+            className="btn btn-outline-warning"
+            id="post"
+            onClick={handleSubmission}
+          >
+            Submit
+          </button>
+          <button
+            className=" btn btn-outline-success ms-1"
+            onClick={() => {
+              handleDownload(links);
+            }}
+          >
+            Download file
+          </button>
 
-        {isLinks ? (
-          <div className="imageDiv">
-            <p className="p-2 text-primary fw-bold"> Ảnh hoàn thiện </p>
-            <img
-              src={links}
-              alt="Ảnh hoàn thiện"
-              style={{ maxWidth: "300px", maxHeight: "400px" }}
-            />
-          </div>
-        ) : (
-          <div className="p-1">
-            <p className="p-2 text-primary fw-bold">Bạn chờ một chút nhé </p>
-            <Loading />
-          </div>
-        )}
+          {isLinks ? (
+            <div className="col-md-8  card p-3 m-0">
+              <p className="p-2 text-primary fw-bold"> Ảnh hoàn thiện </p>
+              <img
+                src={links}
+                alt="Ảnh hoàn thiện"
+                style={{ maxWidth: "300px", maxHeight: "400px" }}
+              />
+              <PostComments
+                className="text-center card-title"
+                imageSrc={links}
+                comments={comments}
+                onCommentAdded={handleCommentAdded}
+              />
+            </div>
+          ) : (
+            <div className="p-1">
+              <p className="p-2 text-primary fw-bold">Bạn chờ một chút nhé </p>
+              <Loading />
+            </div>
+          )}
+        </div>
       </div>
-    </div>
     </>
   );
 }

@@ -23,7 +23,8 @@ function Login() {
       password: password,
     })
     .then((response) => {
-      alert(" Bạn đã đăng nhập thành công");
+      console.log(response.data.ketqua)
+      // alert(response.data.ketqua);
       navigate("/Home");
     })
     .catch((error) => {

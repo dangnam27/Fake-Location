@@ -17,8 +17,10 @@ function Header(props) {
   const typingTimeoutRef = useRef(null)
 
   const SearchIterm = (e) => {
+
     const value = e.target.value
     setSearchI(value);
+    e.preventDefault()
     if (!onSubmit) return;
 
     if (typingTimeoutRef.current){
